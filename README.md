@@ -1,8 +1,10 @@
-0516
+Start: npm start --development
 
-サーバー
-express + hbs
-パブリック
-handlebars tempate
+0521
 
-の環境構築セット
+current.resouce
+	: このフォルダのリソース
+public.resource
+	: publicフォルダのリソース
+
+grunt by coffeescript, handlebars
