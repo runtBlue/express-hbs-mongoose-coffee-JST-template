@@ -9,11 +9,17 @@ App.App = Backbone.View.extend
 	el: '#app'
 	template: JST['layout']
 	initialize: () ->
+		# add->
+		App.mediator = {}
+		_.extend App.mediator, Backbone.Events
+		# <-add
 		@$el.html @template()
 		@searchBar = new App.Views.SearchBar
 			el: @$el.find '#header'
 		@history = new App.Views.History
 			el: @$el.find '#history_list'
+			# add
+			searches: new App.Collections.SearchHistoryList()
 		@tabs = new App.Views.Tabs
 			el: @$el.find '#search_results'
 		@footer = new App.Views.Footer
@@ -21,6 +27,16 @@ App.App = Backbone.View.extend
 
 App.Views.SearchBar = Backbone.View.extend
 	template: JST['search-bar']
+	events:
+		'click #btn_search': 'search'
+	search: (e) ->
+		$checked = @$el.find 'input[type=radio]:checked'
+		query = $('#query').val()
+		service = $checked.val()
+		e.prevantDefault()
+		App.mediator.trigger 'search',
+			query: query
+			service: service
 	initialize: () ->
 		@$el.html @template()
 

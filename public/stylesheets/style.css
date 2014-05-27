@@ -19,7 +19,6 @@ body {
 }
 #container {
   margin: 0 auto;
-  overflow: auto;
   padding-top: 35px;
   padding-bottom: 25px;
 }
@@ -45,7 +44,7 @@ body {
   margin: 0 auto;
   position: relative;
 }
-header,
 footer {
-  border: 1px solid #000;
+  border-top: 1px solid #ccc;
+  padding-top: 10px;
 }

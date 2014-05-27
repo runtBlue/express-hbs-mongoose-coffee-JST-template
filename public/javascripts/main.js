@@ -12,12 +12,15 @@
     el: '#app',
     template: JST['layout'],
     initialize: function() {
+      App.mediator = {};
+      _.extend(App.mediator, Backbone.Events);
       this.$el.html(this.template());
       this.searchBar = new App.Views.SearchBar({
         el: this.$el.find('#header')
       });
       this.history = new App.Views.History({
-        el: this.$el.find('#history_list')
+        el: this.$el.find('#history_list'),
+        searches: new App.Collections.SearchHistoryList()
       });
       this.tabs = new App.Views.Tabs({
         el: this.$el.find('#search_results')
@@ -30,6 +33,20 @@
 
   App.Views.SearchBar = Backbone.View.extend({
     template: JST['search-bar'],
+    events: {
+      'click #btn_search': 'search'
+    },
+    search: function(e) {
+      var $checked, query, service;
+      $checked = this.$el.find('input[type=radio]:checked');
+      query = $('#query').val();
+      service = $checked.val();
+      e.prevantDefault();
+      return App.mediator.trigger('search', {
+        query: query,
+        service: service
+      });
+    },
     initialize: function() {
       return this.$el.html(this.template());
     }

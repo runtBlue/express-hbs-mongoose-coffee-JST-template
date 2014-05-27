@@ -1,1 +1,14 @@
-p Header
+nav.navbar-inverse.navbar-fixed-top
+	.navbar-header
+		a.navbar-brand(href="#") Backbone template practice
+	.navbar-collapse.collase
+		form.navbar-form.navbar-right
+			.form-group
+				input#query.form-control(type='text', placeholder="search...")
+			a#btn_search.btn.btn-success(type='submit') Click me
+			.form-group
+				input#twitter.form-control(type='radio', name="service")
+				label.inline.text-muted(for="twitter") Twitter
+			.form-group
+				input#hotpepper.form-control(type='radio', name="service", value="hotpepper")
+				label.inline.text-muted Hotpepper
